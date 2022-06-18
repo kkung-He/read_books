@@ -70,9 +70,11 @@ Pizza orderPizza(String type) {
 => 캡슐화가 필요하다! 그리고새로 만들 객체에는 **팩토리(Factory)** 라는 이름을 붙이기로 한다.
 
 </br>
-간단한 피자 팩토리를 만든다
-</br>
+간단한 피자 팩토리를 만든다 </br>
+
+
 ```java
+
 public class SimplePizzaFactory {
 
 	public Pizza createPizza(String type) { // 이런 경우에는 static메소드로 선언하는 경우가 종종 있음.
@@ -100,9 +102,11 @@ public class SimplePizzaFactory {
 ```
 
 </br>
-바뀐 PizzaStore 클래스
-</br>
+바뀐 PizzaStore 클래스 </br>
+
+
 ```java
+
 public class PizzaStore {
 
 	SimplePizzaFactory simplePizzaFactory;
