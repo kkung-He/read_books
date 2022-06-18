@@ -72,6 +72,9 @@ Pizza orderPizza(String type) {
 
 * 간단한 피자 팩토리를 만든다  : 객체 생성 코드를 orderPizza 메소드에서 꺼내기 </br>
 
+## ✅ 팩토리 
+: 객체 생성을 처리하는 클래스 
+
 
 
 ```java
