@@ -161,7 +161,9 @@ public class PizzaStore {
 
 ## ❗ 피자 가게 사업 확장 
     => 여러 지역별로 각각의 다른 스타일의 피자를 만들어야 한다! (문제발생)
-    
+
+</br>
+
 모든 프렌차이즈 분점에서 PizzaStore 코드를 사용하여 진행 한다. 간단한 팩토리를 사용해 SimplePizzaFactory를 빼고 세가지 서로 다른 팩토리 
 </p> (NYPizzaFactory, ChicagoPizzaFactory, CaliforniaPizzaFactory) 를 적용한다면? 
 </br>
