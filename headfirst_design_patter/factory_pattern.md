@@ -67,7 +67,7 @@ Pizza orderPizza(String type) {
 
 * if ~ else if  부분은 계속 바뀐다! 피자 종류를 추가한다든지, 잘 나가지 않아서 삭제한다든지! 
 </br>
-=> 캡슐화가 필요하다! 그리고새로 만들 객체에는 **팩토리(Factory)** 라는 이름을 붙이기로 한다.
+## => 캡슐화가 필요하다! 그리고새로 만들 객체에는 **팩토리(Factory)** 라는 이름을 붙이기로 한다.
 
 </br>
 간단한 피자 팩토리를 만든다 </br>
@@ -138,3 +138,18 @@ public class PizzaStore {
 }
 
 ```
+
+## :heavy_exclamation_mark: 피자 가게 사업 확장 
+    => 여러 지역별로 각각의 다른 스타일의 피자를 만들어야 한다! (문제발생)
+    
+모든 프렌차이즈 분점에서 PizzaStore 코드를 사용하여 진행 한다. 간단한 팩토리를 사용해 SimplePizzaFactory를 빼고 세가지 서로 다른 팩토리 
+</p> (NYPizzaFactory, ChicagoPizzaFactory, CaliforniaPizzaFactory) 를 적용한다면? 
+</br>
+각 팩토리를 가진 피자가게 체인점들이 서로의 구현방식이 달라지는 일이 발생 할 수도 있게 됨 
+</br>
+PizzaStore가 각각 있다보니 굽는 방식이 달라진다거나 피자를 자르는 단계를 빼먹거나 하는...
+</br>
+
+
+## :dart: 프레임 워크 만들기 (피자가게와 피자 제작과정을 하나로 묶는!)
+
