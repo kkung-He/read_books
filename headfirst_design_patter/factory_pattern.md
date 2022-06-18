@@ -2,15 +2,50 @@
 # 팩토리 패턴 이해하기:star:
 
 
-✅ 팩토리 메소드 패턴 : 
+## ✅ 팩토리 메소드 패턴 : 
 > 객체를 생성하기 위해 인터페이스를 만든다.
 > 어떤 클래스의 인스턴스를 만들지 서브클래스에서 결정하도록 한다.
 > 팩토리 메소드를 이용하면 인스턴스를 만드는 일을 서브 클래스로 미룰 수 있다.
 
 
+## ✅ 팩토리 메소드 패턴 구현 
 예제) 피자를 주문하는 예제
-1. Creator 클래스인 PizzaStore를 만든다. 이 클래스는 createPizza 라는 팩토리 메소드를 실행해서 pizza를 생성한다.
+뉴욕과 시카고 지역에 매장을 추가하게 되었다. 각 지역별로 피자를 만드는 방식이 조금씩 차이가 난다. 같은 채식피자라도 지역별로 다른 방식으로 처리해야 한다. 
+따라서 지역별로 피자를 만드는 방법을 관리해야 하기 때문에 지역별 PizzaFactory를 만든다. (SimplePizzaFactory를 지역을 기준으로 둘로 쪼갠다)
 
+뉴욕 지역을 위한 피자 인스턴스를 관리하는 클래스 이름을 NYPizzaFactory로 지었다.
+
+```java
+NYPizzaFactory nyFactory = new NYPizzaFactory();
+PizzaStore nyStore = new PizzaStore(nyFactory);
+nyStore.order("Veggie");
+
+```
+Line 1: 뉴욕 스타일 피자 인스턴스 생성을 담당하는 NYPizzaFactory 클래스를 인스턴스화 한다.
+Line 2: PizzaStore의 생성자 nyFactory를 주입한다. 이제부터 nyStore는 nyFactory에서 제공하는 방식으로만 피자를 생성 할 수 있게 된다.
+Line 3: Veggie type의 피자를 주문한다.
+
+위와 마찬가지로 시카고 스타일 피자 생성방법을 매장에 부여한다.
+
+```java
+ChicagoPizzaFactory chicagoFactory = new ChicagoPizzaFactory();
+PizzaStore chicagoStore = new PizzaStore(chicagoFactory);
+chicagoStore.order("Veggie");
+
+
+```
+뉴욕과 시카고 지역을 위한 피자 제작 방식을 Factory 클래스를 사용하여 분리했다.
+
+
+지역별 피자 인스턴스 생성에 대헤 잘 대처했지만 코드에 한가지 문제점이 있다.
+각 매장에 너무 높은 자유도를 부여한것인지 pizza를 두번 굽거나, 피자는 자르지 않는 일이 발생했다. 
+그래서 모든 매장에서 피자를 처리하는 활동(주문, 굽기, 자르기 등)을 하나로 통일 하려고 한다.
+
+해결을 위해 먼저 PizzaStore를 추상 클래스로 변경한다. (이제 PizzaStore 클래스를 인스턴스화 할 수 없게 되었다.)
+
+</br>
+
+1. Creator 클래스인 PizzaStore를 만든다. 이 클래스는 createPizza 라는 팩토리 메소드를 실행해서 pizza를 생성한다.
 
 ```java
 
