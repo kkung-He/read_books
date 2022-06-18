@@ -70,11 +70,12 @@ Pizza orderPizza(String type) {
 
 </br>
 
-* 간단한 피자 팩토리를 만든다  : 객체 생성 코드를 orderPizza 메소드에서 꺼내기 </br>
+* 간단한 피자 팩토리를 만든다  : 객체 생성 코드를 orderPizza 메소드에서 꺼내기 -> 피자 만드는 일만 처리 </br> 
 
 ## ✅ 팩토리 
 : 객체 생성을 처리하는 클래스 
 
+</br>
 
 
 ```java
@@ -107,7 +108,7 @@ public class SimplePizzaFactory {
 
 </br>
 바뀐 PizzaStore 클래스 </br>
-
+: 이 클래스 생성자에 팩토리 객체가 전달, orderPizza() 메소드는 팩토리로 피자 객체를 만든다.
 
 ```java
 
@@ -143,7 +144,10 @@ public class PizzaStore {
 
 ```
 </br>
-
+## ✅ 간단한 팩토리 : 
+디자인 패턴이라기보다는 프로그래밍에서 자주 쓰이는 관용구에 가깝다.
+</br>
+</br>
 ## ✅ 팩토리 메소드 패턴 : 
 >
 > 객체를 생성하기 위해 인터페이스를 만든다.
