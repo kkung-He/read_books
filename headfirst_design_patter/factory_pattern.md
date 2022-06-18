@@ -13,7 +13,7 @@
 
 ## ✅ 문제 
 - 객체를 생성하는 'new'의 문제 : new는 인터페이스가 아니라 실제 클래스를 생성
-- - OCP 에 어긋남: not closed for modification
+- OCP 에 어긋남: not closed for modification : 객체의 확정 개방적으로, 객체의 수정은 
 	1. 생성할 객체가 늘어나면 코드 수정 필요
 	2. 클래스가 많아지거나 변경되면 클라이언트 측 변경이 많아짐
 
