@@ -138,7 +138,7 @@ public class PizzaStore {
 }
 
 ```
-
+</br>
 ## :heavy_exclamation_mark: 피자 가게 사업 확장 
     => 여러 지역별로 각각의 다른 스타일의 피자를 만들어야 한다! (문제발생)
     
@@ -152,4 +152,104 @@ PizzaStore가 각각 있다보니 굽는 방식이 달라진다거나 피자를 
 
 
 ## :dart: 프레임 워크 만들기 (피자가게와 피자 제작과정을 하나로 묶는!)
+    => 피자를 만드는 활동 자체는 전부 PizzaStore 클래스에 국한시키면서 분점마다 고유의 스타일을 살릴 수 있는 방법은?
+</br>
+
+```java
+
+public abstract class PizzaStore { // PizzaStore는 추상 클래스!
+
+	public Pizza orderPizza(String type) {
+
+		Pizza pizza;
+
+		pizza = createPizza(type); //팩토리 객체가 아닌 PizzaStore에 있는 createPizza를 호출
+
+		pizza.prepare();
+
+		pizza.bake();
+
+		pizza.cut();
+
+		pizza.box();
+
+		return pizza;
+
+	}
+
+	protected abstract Pizza createPizza(String type); // 팩토리 객체 대신 이 메소드 사용
+	// Pizza 인스턴스를 만드는 일은 팩토리 역할을 하는 메소드에서 맡아 처리
+}
+
+```
+
+* 이제 각 지점에 맞는 서브 클래스 만들기 (NYPizzaStore, CHicagoPizzaStore, CaliforniaPizzaStore) 피자의 스타일은 각 서브클래스에서 결정
+</br>
+PizzaStore에는 createPizza(), orderPizza() 메소드가 있음! 
+</br>
+이때, 각 서브클래스는 createPizza() 메소드를 오버라이드 하지만, orderPizza()메소드는 PizzaStore에서 정의한 내용 그대로 사용한다.
+</br>
+우리가 정의한 메소드를 고쳐 쓸 수 없게 하고 싶다면 orderPizza() 메소드를 final로 선언하면 된다.
+
+</br>
+
+```java
+
+public class NYPizzaStore extends PizzaStore {
+
+	@Override
+	public Pizza createPizza(String type) { // createPizza는 PizzaStore에서 추상 메소드로 선언되었으므로 구상 클래스에서 반드시 구현!
+
+		Pizza pizza = null;
+
+		if (type.equals("cheese"))
+			pizza = new NYStyleCheesePizza();
+
+		if (type.equals("peper"))
+			pizza = new NYStylePepperoniPizza();
+
+		if (type.equals("clam"))
+			pizza = new NYStyleClamPizza();
+
+		if (type.equals("veggie"))
+			pizza = new NYStyleVeggiePizza();
+
+		return pizza;
+
+	}
+
+}
+
+```
+
+* ChicagoPizzaStore도 동일! 종류만 다름 
+
+```java 
+
+public class ChicagoPizzaStore extends PizzaStore {
+
+	@Override
+	public Pizza createPizza(String type) {
+
+		Pizza pizza = null;
+
+		if (type.equals("cheese"))
+			pizza = new ChicagoStyleCheesePizza();
+
+		if (type.equals("peper"))
+			pizza = new ChicagoStylePepperoniPizza();
+
+		if (type.equals("clam"))
+			pizza = new ChicagoStyleClamPizza();
+
+		if (type.equals("veggie"))
+			pizza = new ChicagoStyleVeggiePizza();
+
+		return pizza;
+
+	}
+
+}
+
+```
 
