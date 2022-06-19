@@ -204,7 +204,7 @@ public abstract class PizzaStore { // PizzaStore는 추상 클래스!
 
 	}
 
-	protected abstract Pizza createPizza(String type); // 팩토리 객체 대신 이 메소드 사용
+	abstract Pizza createPizza(String type); // 팩토리 객체 대신 이 메소드 사용
 	// Pizza 인스턴스를 만드는 일은 팩토리 역할을 하는 메소드에서 맡아 처리
 }
 
