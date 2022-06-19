@@ -175,6 +175,8 @@ PizzaStore가 각각 있다보니 굽는 방식이 달라진다거나 피자를 
 
 ## :dart: 프레임 워크 만들기 (피자가게와 피자 제작과정을 하나로 묶는!)
     => 피자를 만드는 활동 자체는 전부 PizzaStore 클래스에 국한시키면서 분점마다 고유의 스타일을 살릴 수 있는 방법은?
+    createPizza() 메소드를 PizzaStore에 다시 넣는다. 하지만 이번에는 그 메소드를 추상 메소드로 선언하고, 
+    지역별 스타일에 맞게 PizzaStore의 서브클래스를 만든다.
 </br>
 
 ```java
@@ -185,7 +187,8 @@ public abstract class PizzaStore { // PizzaStore는 추상 클래스!
 
 		Pizza pizza;
 
-		pizza = createPizza(type); //팩토리 객체가 아닌 PizzaStore에 있는 createPizza를 호출
+		Pizza pizza = createPizza(type); //팩토리 객체가 아닌 PizzaStore에 있는 createPizza를 호출 
+		//서브클래스에서 결정하도록 함
 
 		pizza.prepare();
 
@@ -208,11 +211,16 @@ public abstract class PizzaStore { // PizzaStore는 추상 클래스!
 * 이제 각 지점에 맞는 서브 클래스 만들기 (NYPizzaStore, CHicagoPizzaStore, CaliforniaPizzaStore) 피자의 스타일은 각 서브클래스에서 결정
 </br>
 PizzaStore에는 createPizza(), orderPizza() 메소드가 있음! 
+모든 지점에서 주문 시스템에 따라 주문이 진행되어야 하며, 각 지점마다 달라질 수 있는 것은 피자 스타일 뿐이다.
 </br>
-이때, 각 서브클래스는 createPizza() 메소드를 오버라이드 하지만, orderPizza()메소드는 PizzaStore에서 정의한 내용 그대로 사용한다.
+그러므로, 각 서브클래스는 createPizza() 메소드를 오버라이드 하지만, orderPizza()메소드는 PizzaStore에서 정의한 내용 그대로 사용한다.
 </br>
 우리가 정의한 메소드를 고쳐 쓸 수 없게 하고 싶다면 orderPizza() 메소드를 final로 선언하면 된다.
 
+</br>
+</br>
+
+* NYPizzaStore : PizzaStore를 확장하기에 orderPizza() 메소드도 자동으로 상속 받는다.
 </br>
 
 ```java
