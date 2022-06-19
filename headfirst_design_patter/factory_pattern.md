@@ -304,6 +304,8 @@ public class ChicagoPizzaStore extends PizzaStore {
 피자 클래스 구현이 변경되면 PizzaStore까지 고쳐야 할 수도 있다. </p>
 피자 종류를 새로 추가하면 PizzaStore는 더 많은 피자 객체에 의존하게 된다.
 
+! p.172 img 참조 
+ 
 </br>
 
 ## :heavy_exclamation_mark: 디자인원칙
