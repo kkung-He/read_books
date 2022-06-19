@@ -162,15 +162,17 @@ public class PizzaStore {
 ## ❗ 피자 가게 사업 확장 
     => 여러 지역별로 각각의 다른 스타일의 피자를 만들어야 한다! (문제발생)
 
-</br>
-
-모든 프렌차이즈 분점에서 PizzaStore 코드를 사용하여 진행 한다. 간단한 팩토리를 사용한 SimplePizzaFactory를 빼고 세가지 서로 다른 팩토리 
-</p> (NYPizzaFactory, ChicagoPizzaFactory, CaliforniaPizzaFactory) 를 적용한다면? 
+* 문제
 </br>
 각 팩토리를 가진 피자가게 체인점들이 서로의 구현방식이 달라지는 일이 발생 할 수도 있게 됨 
 </br>
 PizzaStore가 각각 있다보니 굽는 방식이 달라진다거나 피자를 자르는 단계를 빼먹거나 하는...
 </br>
+
+모든 프렌차이즈 분점에서 PizzaStore 코드를 사용하여 진행 한다. 간단한 팩토리를 사용한 SimplePizzaFactory를 빼고 세가지 서로 다른 팩토리 
+</p> (NYPizzaFactory, ChicagoPizzaFactory, CaliforniaPizzaFactory) 를 만들고 PizzaStore에서 팩토리를 사용하도록 하자 
+</br>
+
 
 
 ## :dart: 프레임 워크 만들기 (피자가게와 피자 제작과정을 하나로 묶는!)
