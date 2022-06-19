@@ -227,7 +227,7 @@ PizzaStore에는 createPizza(), orderPizza() 메소드가 있음!
 </br>
 </br>
 
-* NYPizzaStore : PizzaStore를 확장하기에 orderPizza() 메소드도 자동으로 상속 받는다.
+* NYPizzaStore : PizzaStore를 확장
 </br>
 
 ```java
