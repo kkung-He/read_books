@@ -216,6 +216,11 @@ PizzaStore에는 createPizza(), orderPizza() 메소드가 있음!
 그러므로, 각 서브클래스는 createPizza() 메소드를 오버라이드 하지만, orderPizza()메소드는 PizzaStore에서 정의한 내용 그대로 사용한다.
 </br>
 우리가 정의한 메소드를 고쳐 쓸 수 없게 하고 싶다면 orderPizza() 메소드를 final로 선언하면 된다.
+</br>
+
+## ✅ 팩토리 메소드 선언
+: PizzaStore는 구상 클래스 인스턴스 만드는 일을 하나의 객체가 전부 처리하는 방식에서 일련의 서브 클래스가 처리하는 방식으로 바뀌었다. </p>
+피자 객체 인스턴스를 만드는 일은 PizzaStore 의 서브 클래스 NYPizzaStore에 있는 createPizza() 메소드에서 처리
 
 </br>
 </br>
