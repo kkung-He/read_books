@@ -164,7 +164,7 @@ public class PizzaStore {
 
 </br>
 
-모든 프렌차이즈 분점에서 PizzaStore 코드를 사용하여 진행 한다. 간단한 팩토리를 사용해 SimplePizzaFactory를 빼고 세가지 서로 다른 팩토리 
+모든 프렌차이즈 분점에서 PizzaStore 코드를 사용하여 진행 한다. 간단한 팩토리를 사용한 SimplePizzaFactory를 빼고 세가지 서로 다른 팩토리 
 </p> (NYPizzaFactory, ChicagoPizzaFactory, CaliforniaPizzaFactory) 를 적용한다면? 
 </br>
 각 팩토리를 가진 피자가게 체인점들이 서로의 구현방식이 달라지는 일이 발생 할 수도 있게 됨 
