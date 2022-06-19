@@ -298,6 +298,7 @@ public class ChicagoPizzaStore extends PizzaStore {
 피자 종류를 새로 추가하면 PizzaStore는 더 많은 피자 객체에 의존하게 된다.
 
 </br>
+
 ## :heavy_exclamation_mark: 디자인원칙
     => 추상화 된 것에 의존하도록 만들어라. 구상 클래스에 의존하도록 만들지 않도록 한다.
 
