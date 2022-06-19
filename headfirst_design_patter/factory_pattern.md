@@ -290,7 +290,14 @@ public class ChicagoPizzaStore extends PizzaStore {
 
 ```
 </br>
+
+## :interrobang: 간단한 팩토리와 팩토리 메소드 패턴의 차이를 모르겠어요! 
+간단한 팩토리 : 스스로 결정한다 -> Cheese -> 같은 타입의 인스턴스가 나온다
+팩토리 메소드 패턴 : 서브클래스가 결정한다. -> 서로 다른 클래스 -> Cheese -> 서로 다른 인스턴스가 나온다.
+
 </br>
+</br>
+
 
 ## ✅ 객체 의존성 
 : 모든 피자 객체를 직접 생성해야 하므로, 이 PizzaStore는 모든 피자 객체에 직접 의존하게 된다. </P>
