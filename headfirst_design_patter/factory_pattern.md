@@ -210,7 +210,7 @@ public abstract class PizzaStore { // PizzaStore는 추상 클래스!
 
 ```
 
-* 이제 각 지점에 맞는 서브 클래스 만들기 (NYPizzaStore, CHicagoPizzaStore, CaliforniaPizzaStore) 피자의 스타일은 각 서브클래스에서 결정
+* 이제 각 지점에 맞는 서브 클래스 만들기 (NYPizzaStore, ChicagoPizzaStore, CaliforniaPizzaStore) 피자의 스타일은 각 서브클래스에서 결정
 </br>
 PizzaStore에는 createPizza(), orderPizza() 메소드가 있음! 
 모든 지점에서 주문 시스템에 따라 주문이 진행되어야 하며, 각 지점마다 달라질 수 있는 것은 피자 스타일 뿐이다.
