@@ -287,7 +287,15 @@ public class ChicagoPizzaStore extends PizzaStore {
 }
 
 ```
+</br>
+</br>
 
+## ✅ 객체 의존성 
+: 모든 피자 객체를 직접 생성해야 하므로, 이 PizzaStore는 모든 피자 객체에 직접 의존하게 된다. </P>
+피자 클래스 구현이 변경되면 PizzaStore까지 고쳐야 할 수도 있다. </p>
+피자 종류를 새로 추가하면 PizzaStore는 더 많은 피자 객체에 의존하게 된다.
+
+</br>
 ## :heavy_exclamation_mark: 디자인원칙
     => 추상화 된 것에 의존하도록 만들어라. 구상 클래스에 의존하도록 만들지 않도록 한다.
 
