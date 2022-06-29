@@ -61,6 +61,8 @@
 
 <img width="700" alt="객체 어댑터" src="https://user-images.githubusercontent.com/98209409/176469115-e78466a6-9795-44af-952d-e75bfba9a2c1.png">
 
+출처 : https://aaronryu.github.io/2019/02/27/adapter-decorator-facade-pattern/
+
 </br>
 </br>
 
@@ -72,4 +74,6 @@
 </br>
 
 <img width="700" alt="클래스 어댑터" src="https://user-images.githubusercontent.com/98209409/176468935-63deee8f-bd2f-4fc5-adda-50472f825d2a.png">
+
+출처 : https://aaronryu.github.io/2019/02/27/adapter-decorator-facade-pattern/
 
