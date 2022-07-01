@@ -104,7 +104,9 @@
 
 ## ✅ 정의
 > 서브시스템의 일련의 인터페이스를 통합 인터페이스로 묶어 준다. 고수준 인터페이스도 정의하므로 서브시스템을 더 편리하게 사용할 수 있다. </p>
-> 즉, 퍼사드 패턴을 사용하려면 어떤 서브시스템에 속한 일련의 복잡한 클래스들을 단순화하고 통합한 클래스를 만들어야 한다.
+> 즉, 퍼사드 패턴을 사용하려면 어떤 서브시스템에 속한 일련의 복잡한 클래스들을 단순화하고 통합한 클래스를 만들어야 한다.  </p>
+> 클라이언트를 복잡한 서비시스템과 분리 
+
 
 </br>
 
@@ -116,121 +118,36 @@
 
 ```java
 
-public class HomeTheaterFacade {
+public class Facade {
 
-	Amplifier amp;
+    private Package1 p1;
+    private Package2 p2;
+    private Package3 p3;
 
-	Tuner tuner;
+    Facade() {
+        p1 = new Package1();
+        p2 = new Package2();
+        p3 = new Package3();
+    }
 
-	Dvdplayer dvd;
-
-	CdPlayer cd;
-
-	Projector projector;
-
-	TheaterLights lights;
-
-	Screen screen;
-
-	PopcornPopper popper;
-
-public HomeTheaterFacade(Amplifier amp, Tuner tuner, DvdPlayer dvd, CdPlayer cd, Projector projector, Screen screen,
-			TheaterLights lights, PopcornPopper popper) {
-
-		this.amp = amp;
-
-		this.tunner = tuner;
-
-		this.dvd = dvd;
-
-		this.cd = cd;
-
-		this.projector = projector;
-
-		this.screen = screen;
-
-		this.lights = lights;
-
-		this.popper = popper;
-
-	}
-  
-  public void watchMovie(String movie) {
-
-		System.out.println("Get ready to watch a movie...");
-
-		popper.on();
-
-		popper.pop();
-
-		lights.dim(10);
-
-		screen.down();
-
-		projector.on();
-
-		projector.wideScreenMode();
-
-		amp.on();
-
-		amp.setDvd(dvd);
-
-		amp.setsurroundSound();
-
-		amp.setVolume(5);
-
-		dvd.on();
-
-		dvd.play(movie);
-
-	}
-public void endMovie() {
-
-		System.out.println("Shutting movie theater down...");
-
-		popper.off();
-
-		lights.on();
-
-		screen.up();
-
-		projector.off();
-
-		amp.off();
-
-		dvd.stop();
-
-		dvd.eject();
-
-		dvd.off();
-
-	}
-
+    public void processFacade() {
+        p1.process();
+        p2.process();
+        p3.process();
+    }
 }
+    public static void main(String[] args) {
+        Facade facade = new Facade();
+        facade.processFacade();
+
+    }
+
 
 ```
+소스 출처 : https://joomn11.tistory.com/67
 
 </br>
-</br>
 
-```java
-
-public class HomeTheaterTestDrive {
-
-	public static void main(String[] args) {
-
-		// instantiate components here
-		HomeTheaterFacade homeTheater = new HomeTheaterFacade(amp, tuner, dvd, cd, projector, screen, lights, popper);
-
-		homeTheater.watchMovie("타짜");
-
-		homeTheater.endMovie();
-
-	}
-
-}
-
-```
 
 
 </br>
@@ -245,8 +162,10 @@ public class HomeTheaterTestDrive {
 
 
 ## ✅ 각 패턴과 용도 
-데코레이터 패턴 : 인터페이스는 바꾸지 않고 책임(기능)만 추가
-어댑터 패턴 : 한 인터페이스를 다른 인터페이스로 변환
+데코레이터 패턴 : 인터페이스는 바꾸지 않고 책임(기능)만 추가 </p>
+어댑터 패턴 : 한 인터페이스를 다른 인터페이스로 변환 </p>
 퍼사드 패턴 : 인터페이스를 간단하게 바꿈
+
+
 
 
