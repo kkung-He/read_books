@@ -85,21 +85,18 @@
 
 </br>
 
-## ✅ 실전 적용 
-
-1. Enumeration </p>
-  Enumeration을 리턴하는 elements() 메소드가 구현되어 있었던, 초기 컬렉션 형식(Vector, Stack, Hashtable 등) </p>
-  Enumeration 인터페이스를 이용하면 컬렉션 내에서 각 항목이 관리되는 방식에는 신경 쓸 필요 없이 컬렉션의 모든 항목에 접근이 가능하다
-
-2. iterator
-
 
 # 퍼사드패턴 이해하기 :star2:
 
 </br>
 </br>
+
+## ✅ 생각하기
+> 퍼사드(facade) : 겉으로 드러난 표면
 집에 홈시어터가 있다. 홈시어터로 영화를 보려면 많은 과정 필요! 스크린 내리고-> 프로젝터 키기 -> 프로젝터와 연결 -> ... </p>
-퍼사드는 얘를 wqtchMovie() 메소드 하나로 묶을 수 있다.
+-> 필요시마다 객체 생성 및 객체의 메소드를 호출해야한다. </p>
+-> 퍼사드는 얘를 watchMovie() 메소드 하나로 묶을 수 있다. </p>
+-> 즉, 단순화된 인터페이스를 통해 서브시스템을 더 쉽게 사용 할 수 있도록 하기 위한 용도로 쓰인다!
 
 </br>
 </br>
@@ -111,12 +108,145 @@
 
 </br>
 
-<img width="879" alt="퍼사드 패턴" src="https://user-images.githubusercontent.com/98209409/176702609-429c4f79-0050-44a8-ad79-b2b31a512be7.png">
+<img width="860" alt="퍼사드패턴" src="https://user-images.githubusercontent.com/98209409/176871529-97bbe8b3-cd02-4b9a-aaed-7d43570e668d.png">
+
+출처 : https://m.hanbit.co.kr/channel/category/category_view.html?cms_code=CMS8616098823
+
+</br>
+
+```java
+
+public class HomeTheaterFacade {
+
+	Amplifier amp;
+
+	Tuner tuner;
+
+	Dvdplayer dvd;
+
+	CdPlayer cd;
+
+	Projector projector;
+
+	TheaterLights lights;
+
+	Screen screen;
+
+	PopcornPopper popper;
+
+public HomeTheaterFacade(Amplifier amp, Tuner tuner, DvdPlayer dvd, CdPlayer cd, Projector projector, Screen screen,
+			TheaterLights lights, PopcornPopper popper) {
+
+		this.amp = amp;
+
+		this.tunner = tuner;
+
+		this.dvd = dvd;
+
+		this.cd = cd;
+
+		this.projector = projector;
+
+		this.screen = screen;
+
+		this.lights = lights;
+
+		this.popper = popper;
+
+	}
+  
+  public void watchMovie(String movie) {
+
+		System.out.println("Get ready to watch a movie...");
+
+		popper.on();
+
+		popper.pop();
+
+		lights.dim(10);
+
+		screen.down();
+
+		projector.on();
+
+		projector.wideScreenMode();
+
+		amp.on();
+
+		amp.setDvd(dvd);
+
+		amp.setsurroundSound();
+
+		amp.setVolume(5);
+
+		dvd.on();
+
+		dvd.play(movie);
+
+	}
+public void endMovie() {
+
+		System.out.println("Shutting movie theater down...");
+
+		popper.off();
+
+		lights.on();
+
+		screen.up();
+
+		projector.off();
+
+		amp.off();
+
+		dvd.stop();
+
+		dvd.eject();
+
+		dvd.off();
+
+	}
+
+}
+
+```
+
+</br>
+</br>
+
+```java
+
+public class HomeTheaterTestDrive {
+
+	public static void main(String[] args) {
+
+		// instantiate components here
+		HomeTheaterFacade homeTheater = new HomeTheaterFacade(amp, tuner, dvd, cd, projector, screen, lights, popper);
+
+		homeTheater.watchMovie("타짜");
+
+		homeTheater.endMovie();
+
+	}
+
+}
+
+```
+
 
 </br>
 
 ## ✅ 디자인 원칙
-> 최소 지식 원칙 : 정만 친한 친구하고만 얘기하라!
-> 객체 간의 상호작용을 줄이는 4가지 가이드라인 : 다음 4종류 객체의 메소드만 호출
->  1. 객체 자체, 2. 메소드에 매개변수로 전달된 객체 3. 해당 메소드에서 생성하거나 인스턴스를 만든 객체 4. 그 객체에 속하는 구성요소
+> 최소 지식 원칙 (Demeter(디미터) 혹은 데메테르 의 법칙) : 정만 친한 친구하고만 얘기하라! </p>
+> 객체 간의 상호작용을 줄이는 4가지 가이드라인 : 다음 4종류 객체의 메소드만 호출 </p>
+>  1. 객체 자체 </p> 
+>  2. 메소드에 매개변수로 전달된 객체 </p>
+>  3. 해당 메소드에서 생성하거나 인스턴스를 만든 객체 </p>
+>  4. 그 객체에 속하는 구성요소(멤버변수로 저장되는 객체) </p>
+
+
+## ✅ 각 패턴과 용도 
+데코레이터 패턴 : 인터페이스는 바꾸지 않고 책임(기능)만 추가
+어댑터 패턴 : 한 인터페이스를 다른 인터페이스로 변환
+퍼사드 패턴 : 인터페이스를 간단하게 바꿈
+
 
