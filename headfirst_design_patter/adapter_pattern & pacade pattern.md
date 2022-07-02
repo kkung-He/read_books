@@ -38,43 +38,9 @@
 ## ✅ 정의
 > 한 클래스의 인터페이스를 클라이언트에서 사용하고자 다른 인터페이스로 변환한다 </p>
 > 어댑터를 이용하면 인터페이스 호환성 문제 때문에 같이 쓸 수 없는 클래스들을 연결해서 쓸 수 있다. </p>
-> 어댑터를 사용함으로써 클라이언트와 구현된 인터페이스를 분리시킬수 있으며, </p>
-> 나중에 인터페이스가 바뀌더라도 그 변경 내역은 어댑터에 캡슐화되기 때문에 클라이언트는 바뀔 필요가 없다. </p>
-
-
-
 
 </br>
 </br>
-
-## ✅ 객체 어댑터
-> 객체 구성(composition)을 사용한다 </p>
-> 어댑티 뿐만 아니라 그 서브 클래스에 대해서도 어댑터 역할을 할 수 있다는 장점이 있다. </p>
-</br>
-
-<img width="700" alt="객체 어댑터" src="https://user-images.githubusercontent.com/98209409/176469115-e78466a6-9795-44af-952d-e75bfba9a2c1.png">
-
-출처 : https://aaronryu.github.io/2019/02/27/adapter-decorator-facade-pattern/
-
-</br>
-</br>
-
-## ✅ 클래스 어댑터
-> 다중 상속을 사용한다. 즉 자바에서는 적용할 수 없는 어댑터라 할 수 있다. (자바는 다중상속 불가) </p>
-> 어댑티 전체를 다시 구현하지 않아도 된다는 장점이 있다.</p>
-> 또한 어댑티의 행동을 오버라이드 할 수 있다.</p>
-> 특정 어댑티 클래스에서만 적용된다는 단점이 있다.</p>
-</br>
-
-<img width="700" alt="클래스 어댑터" src="https://user-images.githubusercontent.com/98209409/176468935-63deee8f-bd2f-4fc5-adda-50472f825d2a.png">
-
-출처 : https://aaronryu.github.io/2019/02/27/adapter-decorator-facade-pattern/
-
-클래스 어댑터에서는 어댑터를 만들 때 타겟과 어댑티 모두의 서브 클래스로 만들고, </p>
-객체 어댑터에서는 구성을 통해서 어댑티에 요청을 전달한다는 점을 제외하면 별다른 차이점이 없다.
-
-</br>
-
 
 ## ✅ 클라이언트에서 어댑터를 사용하는 방법 </p>
 >1. 클라이언트에서 타깃 인터페이스로 메소드를 호출해서 어댑터에 요청을 보낸다. </p>
@@ -113,8 +79,41 @@ public class TurkeyAdapter implements Duck {
 }
 
 ```
+
+
 </br>
 </br>
+
+## ✅ 객체 어댑터
+> 객체 구성(composition)을 사용한다 </p>
+> 어댑티 뿐만 아니라 그 서브 클래스에 대해서도 어댑터 역할을 할 수 있다는 장점이 있다. </p>
+</br>
+
+<img width="700" alt="객체 어댑터" src="https://user-images.githubusercontent.com/98209409/176469115-e78466a6-9795-44af-952d-e75bfba9a2c1.png">
+
+출처 : https://aaronryu.github.io/2019/02/27/adapter-decorator-facade-pattern/
+
+</br>
+</br>
+
+## ✅ 클래스 어댑터
+> 다중 상속을 사용한다. 즉 자바에서는 적용할 수 없는 어댑터라 할 수 있다. (자바는 다중상속 불가) </p>
+> 어댑티 전체를 다시 구현하지 않아도 된다는 장점이 있다.</p>
+> 또한 어댑티의 행동을 오버라이드 할 수 있다.</p>
+> 특정 어댑티 클래스에서만 적용된다는 단점이 있다.</p>
+</br>
+
+<img width="700" alt="클래스 어댑터" src="https://user-images.githubusercontent.com/98209409/176468935-63deee8f-bd2f-4fc5-adda-50472f825d2a.png">
+
+출처 : https://aaronryu.github.io/2019/02/27/adapter-decorator-facade-pattern/
+
+클래스 어댑터에서는 어댑터를 만들 때 타겟과 어댑티 모두의 서브 클래스로 만들고, </p>
+객체 어댑터에서는 구성을 통해서 어댑티에 요청을 전달한다는 점을 제외하면 별다른 차이점이 없다.
+
+</br>
+</br>
+
+
 
 # 퍼사드패턴 이해하기 :star2:
 
