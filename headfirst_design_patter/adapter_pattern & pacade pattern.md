@@ -9,6 +9,14 @@
 
 출처 : https://swk3169.tistory.com/255
 
+</br>
+</br>
+
+## 🎨 클래스 다이어그램 
+
+<img width="700" alt="adapter pattern 2" src="https://user-images.githubusercontent.com/98209409/176467346-2a83e8d6-ed7c-42d8-bcf3-e90361132ee4.png">
+
+출처 : https://byulmuri.wordpress.com/2010/07/26/adapter-pattern/  
 
 </br>
 </br>
@@ -33,14 +41,7 @@
 > 어댑터를 사용함으로써 클라이언트와 구현된 인터페이스를 분리시킬수 있으며, </p>
 > 나중에 인터페이스가 바뀌더라도 그 변경 내역은 어댑터에 캡슐화되기 때문에 클라이언트는 바뀔 필요가 없다. </p>
 
-</br>
-</br>
 
-## 🎨 클래스 다이어그램 
-
-<img width="700" alt="adapter pattern 2" src="https://user-images.githubusercontent.com/98209409/176467346-2a83e8d6-ed7c-42d8-bcf3-e90361132ee4.png">
-
-출처 : https://byulmuri.wordpress.com/2010/07/26/adapter-pattern/  
 
 
 </br>
