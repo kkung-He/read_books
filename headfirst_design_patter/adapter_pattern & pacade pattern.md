@@ -85,6 +85,7 @@ public class TurkeyAdapter implements Duck {
 </br>
 
 ## ✅ 객체 어댑터
+> 어댑티를 어댑터가 객체고 갖고 있다. (구성) </p>
 > 객체 구성(composition)을 사용한다 </p>
 > 어댑티 뿐만 아니라 그 서브 클래스에 대해서도 어댑터 역할을 할 수 있다는 장점이 있다. </p>
 </br>
