@@ -262,7 +262,6 @@ public class Car {
 	public void updateDashboardDisplay() {}
 
 }
-출처: https://swk3169.tistory.com/256 [swk의 지식저장소:티스토리]
 
 ```
 
