@@ -217,7 +217,12 @@ public class Facade {
 </br>
 
 ## ✅ 디자인 원칙
-> 최소 지식 원칙 (Demeter(디미터) 혹은 데메테르 의 법칙) : 정만 친한 친구하고만 얘기하라! </p>
+
+> 최소 지식 원칙 (Demeter(디미터) 혹은 데메테르 의 법칙) : 정말 친한 친구하고만 얘기하라! </p>
+> 어떤 객체든 그 객체와 상호작용하는 클래스의 개수에 주의해야 하며, </p>
+> 그런 객체들과 어떤식으로 상호작용을 하는지에도 주의를 기울여야 한다.</p>
+</br>
+
 > 객체 간의 상호작용을 줄이는 4가지 가이드라인 : 다음 4종류 객체의 메소드만 호출 </p>
 >  1. 객체 자체 </p> 
 >  2. 메소드에 매개변수로 전달된 객체 </p>
@@ -227,7 +232,44 @@ public class Facade {
 </br>
 </br>
 
+## ✅ 예시
+
+```java
+public class Car {
+
+	Engine engine; // 이 클래스의 구성요소. 이 구성요소의 메소드는 호출해도 된다.
+
+	public Car() {}
+
+	public void start(Key key) { // 매개변수로 전달된 객체의 메소드는 호출해도 된다.
+
+		Doors doors = new Doors(); // 새로운 객체 생성. 이 객체의 메소드는 호출해도 된다.
+
+		boolean authorized = key.turns(); // 매개변수로 전달된 객체의 메소드는 호출해도 된다.
+
+		if (authorized) {
+
+			engine.start(); // 이 객체의 구성요소의 메소드는 호출해도 된다.
+
+			updateDashboardDisplay(); // 객체 내에 있는 메소드는 호출해도 된다.
+
+			doors.lock(); // 직접 생성하거나 인스턴스를 만든 객체의 메소드는 호출해도 된다.
+
+		}
+
+	}
+
+	public void updateDashboardDisplay() {}
+
+}
+출처: https://swk3169.tistory.com/256 [swk의 지식저장소:티스토리]
+
+```
+
+출처: https://swk3169.tistory.com/256 
+
 ## ✅ 각 패턴과 용도 
+
 데코레이터 패턴 : 인터페이스는 바꾸지 않고 책임(기능)만 추가 </p>
 어댑터 패턴 : 한 인터페이스를 다른 인터페이스로 변환 </p>
 퍼사드 패턴 : 인터페이스를 간단하게 바꿈
