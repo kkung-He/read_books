@@ -3,7 +3,7 @@
 </br>
 </br>
 
-## 🎨 이해
+## 🎨 이해 : 변장
 
 <img width="414" alt="어댑터패턴 이해" src="https://user-images.githubusercontent.com/98209409/177018636-cdb9cf9e-0980-488c-9403-1a8c1b837d19.PNG">
 
@@ -95,18 +95,48 @@ public class TurkeyAdapter implements Duck {
 출처 : https://aaronryu.github.io/2019/02/27/adapter-decorator-facade-pattern/
 
 </br>
+
+```java
+
+class Adapter implements TargetInterface {
+    private Adaptee adaptee; 
+    // ... adaptee 함수를 활용해 TargetInterface 의 함수를 구현합니다.
+}
+```
+
+</br>
 </br>
 
 ## ✅ 클래스 어댑터
 > 다중 상속을 사용한다. 즉 자바에서는 적용할 수 없는 어댑터라 할 수 있다. (자바는 다중상속 불가) </p>
+> 타겟이 인터페이스가 아닌 클래스 이다. 즉 다른 클래스로 대체할 수 없다. 타겟과 어댑터가 단단히 엮인다.  </p>
 > 어댑티 전체를 다시 구현하지 않아도 된다는 장점이 있다.</p>
 > 또한 어댑티의 행동을 오버라이드 할 수 있다.</p>
-> 특정 어댑티 클래스에서만 적용된다는 단점이 있다.</p>
+
 </br>
 
 <img width="700" alt="클래스 어댑터" src="https://user-images.githubusercontent.com/98209409/176468935-63deee8f-bd2f-4fc5-adda-50472f825d2a.png">
 
 출처 : https://aaronryu.github.io/2019/02/27/adapter-decorator-facade-pattern/
+
+</br>
+
+```java
+class Adapter extends Target, Adaptee {
+    // ... adaptee 함수를 활용해 Target 의 함수를 확장합니다.
+    //클래스 어댑터에선 타겟과 어댑티 클래스 둘 모두를 상속 받는 서브 클래스를 만들어 요청 처리
+}
+```
+</br>
+</br>
+## ✅ 객체 어댑터와 클래스 어댑터 장단점
+
+<img width="511" alt="객체 어댑터 클래스어댑터" src="https://user-images.githubusercontent.com/98209409/177019446-03c0ceb6-0f36-4a19-823a-7ea837783b3f.PNG">
+
+출처 : https://bb-dochi.tistory.com/80
+
+</br>
+</br>
 
 클래스 어댑터에서는 어댑터를 만들 때 타겟과 어댑티 모두의 서브 클래스로 만들고, </p>
 객체 어댑터에서는 구성을 통해서 어댑티에 요청을 전달한다는 점을 제외하면 별다른 차이점이 없다.
@@ -116,12 +146,13 @@ public class TurkeyAdapter implements Duck {
 
 
 
+
 # 퍼사드패턴 이해하기 :star2:
 
 </br>
 </br>
 
-## ✅ 생각하기
+## ✅ 이해 : 묶음
 > 퍼사드(facade) : 겉으로 드러난 표면
 집에 홈시어터가 있다. 홈시어터로 영화를 보려면 많은 과정 필요! 스크린 내리고-> 프로젝터 키기 -> 프로젝터와 연결 -> ... </p>
 -> 필요시마다 객체 생성 및 객체의 메소드를 호출해야한다. </p>
