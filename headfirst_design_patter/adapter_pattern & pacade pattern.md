@@ -129,7 +129,10 @@ class Adapter extends Target, Adaptee {
 ```
 </br>
 </br>
+
 ## ✅ 객체 어댑터와 클래스 어댑터 장단점
+
+</br>
 
 <img width="511" alt="객체 어댑터 클래스어댑터" src="https://user-images.githubusercontent.com/98209409/177019446-03c0ceb6-0f36-4a19-823a-7ea837783b3f.PNG">
 
