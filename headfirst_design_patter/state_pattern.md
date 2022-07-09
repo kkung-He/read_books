@@ -114,7 +114,7 @@ if(상태 == 동전있음) {
 </br>
 </br>
 
-## ✅ 해당 구조
+## ✅ 뽑기기계 부분
 <img width="652" alt="해당 상태 패턴 구조" src="https://user-images.githubusercontent.com/98209409/178125292-032a1971-0f65-457b-b608-64bc5fc2f50c.png">
 
 출처 : https://secretroute.tistory.com/entry/Head-First-Design-Pattern-%EC%A0%9C10%EC%9E%A5-State-%ED%8C%A8%ED%84%B4
