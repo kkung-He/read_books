@@ -209,6 +209,8 @@ public class GumballMachine {
             count = count - 1;
         }
     }
+    
+    /*각종 GET, SET 함수*/
 }
 
 ```
@@ -245,16 +247,103 @@ public class HasQuaterState implements State {
     }
 }
 
+//--------------NoQuaterState
+public class NoQuarterState implements State{
+  GumballMachine gumballMachine;
+
+  public NoQuarterState(GumballMachine gumballMachine) {
+      this.gumballMachine = gumballMachine;
+  }
+
+  @Override
+  public void insertQuarter() {
+      System.out.println("동전을 넣으셨습니다.");
+      gumballMachine.setState(gumballMachine.getHasQuarterState());
+  }
+  
+  //... dispense(){} 까지
+
+
+
+//---------------SoldOutState
+
+public class SoldOutState implements State{
+
+  GumballMachine gumballMachine;
+
+  public SoldOutState(GumballMachine gumballMachine) {
+      this.gumballMachine = gumballMachine;
+  }
+
+  @Override
+  public void insertQuarter() {
+      System.out.println("동전을 넣으셨습니다.");
+      gumballMachine.setState(gumballMachine.getHasQuarterState());
+  }
+
+  @Override
+  public void ejectQuarter() {
+      System.out.println("동전을 넣어주세요");
+  }
+
+  @Override
+  public void tumCrank() {
+      System.out.println("동전을 넣어주세요");
+  }
+
+  @Override
+  public void dispense() {
+      System.out.println("동전을 넣어주세요");
+  }
+}
+
 //------- Sold State
 
-    public class SoldState implements State {
+     public class SoldState implements State {
+
         public void insertQuarter() {
             System.out.println("잠깐만 기다려 주세요. 알맹이가 나가고 있습니다.");
         }
+      
+      @Override
+      public void ejectQuarter() {
+          System.out.println("이미 알멩이를 뽑으셨습니다");
+      }
         
-    ...
+    ...  dispense(){} 까지
 
 
+```
+
+</br>
+</br>
+
+## ✅ GumballMachine
+
+```java
+public class GumballMachineTest {
+  public static void main(String[] args) {
+      GumballMachine gumballMachine = new GumballMachine(5);
+
+      System.out.println(gumballMachine);
+
+      gumballMachine.insertQuarter();
+      gumballMachine.tumCrank();
+
+      System.out.println(gumballMachine);
+
+      gumballMachine.insertQuarter();
+      gumballMachine.tumCrank();
+      gumballMachine.insertQuarter();
+      gumballMachine.tumCrank();
+
+      System.out.println(gumballMachine);
+
+      gumballMachine.releaseBall();
+
+      System.out.println(gumballMachine);
+  }
+}
 ```
 
 </br>
