@@ -134,7 +134,9 @@ if(상태 == 동전있음) {
 
 
 출처 : https://secretroute.tistory.com/entry/Head-First-Design-Pattern-%EC%A0%9C10%EC%9E%A5-State-%ED%8C%A8%ED%84%B4
+
 </br>
+
  : 공통 state 인터페이스를 사용하고 모든 상태를 캡슐화 통해서 관리한다.
 
 </br>
