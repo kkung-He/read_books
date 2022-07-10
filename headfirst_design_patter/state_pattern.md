@@ -30,10 +30,10 @@
 ```java
 
 public class GumballMachine{
-    final static int SOLD_OUT = 0;
-    final static int NO_QUARTER = 1;
-    final static int HAS_QUARTER = 2;
-    final static int SOLD = 3;
+    final static int SOLD_OUT = 0; //매진
+    final static int NO_QUARTER = 1; //동전없음
+    final static int HAS_QUARTER = 2; //동전있음
+    final static int SOLD = 3; // 판매
     
     int state = SOLD_OUT;
     int count = 0;
@@ -46,9 +46,14 @@ public class GumballMachine{
       }  
     }
     
+    //동전삽입
     public void insertQuarter() {
-        if ( state == HAS_QUARTER ) { // 출력 : 동전은 한 개만 }        
-        else if ( state == NO_QUARTER ) {
+        if ( state == HAS_QUARTER ) { 
+        
+        // 출력 : 동전은 한 개만
+        System.out.println('동전은 한 개만 넣어주세요');  
+        
+        }else if ( state == NO_QUARTER ) {
             state = HAS_QUARTER;            
             // 출력 : 동전 받음        
        }         
@@ -129,14 +134,15 @@ if(상태 == 동전있음) {
 
 
 출처 : https://secretroute.tistory.com/entry/Head-First-Design-Pattern-%EC%A0%9C10%EC%9E%A5-State-%ED%8C%A8%ED%84%B4
-
+</br>
+ : 공통 state 인터페이스를 사용하고 모든 상태를 캡슐화 통해서 관리한다.
 
 </br>
 </br>
+
+## ✅ State Interface
 
 ```java
-
-================================>
 
 //State 인터페이스 상태를 캡슐화 함
 public interface State {
@@ -145,6 +151,13 @@ public interface State {
     public void turnCrank();
     public void dispense();
 }
+
+```
+</br>
+
+## ✅ GumballMachine
+
+```java
 
 //Context 클래스
 public class GumballMachine {
@@ -196,8 +209,14 @@ public class GumballMachine {
     }
 }
 
+```
+</br>
+
+## ✅ HasQuaterState, NoQuaterState, SoldOutState, SoldState
+
+```java
 //ConcreteState 클래스들
-//State 인터페이스를 구현함
+
 public class HasQuaterState implements State {
     GumballMachine gumballMachine;
     
@@ -223,6 +242,8 @@ public class HasQuaterState implements State {
         System.out.println("알맹이가 나갈 수 없습니다.");
     }
 }
+
+//------- Sold State
 
     public class SoldState implements State {
         public void insertQuarter() {
