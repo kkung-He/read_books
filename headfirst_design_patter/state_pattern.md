@@ -318,7 +318,7 @@ public class SoldOutState implements State{
 </br>
 </br>
 
-## ✅ GumballMachine
+## ✅ GumballMachineTest
 
 ```java
 public class GumballMachineTest {
