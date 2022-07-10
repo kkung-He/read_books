@@ -146,7 +146,7 @@ if(상태 == 동전있음) {
 
 ```java
 
-//State 인터페이스 상태를 캡슐화 함
+//State 인터페이스 
 public interface State {
     public void insertQuarter();
     public void ejectQuarter();
