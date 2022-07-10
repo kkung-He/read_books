@@ -22,6 +22,15 @@
 </br>
 </br>
 
+
+
+<img width="853" alt="뽑기 기계 작동 원리" src="https://user-images.githubusercontent.com/98209409/178126574-f8d2151d-4d6f-4442-9ef4-fa20cef8666b.png">
+
+출처 : https://bb-dochi.tistory.com/83
+
+</br>
+</br>
+
 ## ✅ 뽑기 기계
 > 뽑기 기계는 동전없음, 동전있음, 알맹이 매진, 알맹이 판매 의 4가지 상태를 가질 수 있다.</p>
 > 동전 투입, 동전 반환, 손잡이 돌리기, 알맹이 배출 의 4가지 행동을 가지고 있다. </p>
@@ -120,12 +129,7 @@ if(상태 == 동전있음) {
 
 출처 : https://secretroute.tistory.com/entry/Head-First-Design-Pattern-%EC%A0%9C10%EC%9E%A5-State-%ED%8C%A8%ED%84%B4
 
-</br>
-</br>
 
-<img width="853" alt="뽑기 기계 작동 원리" src="https://user-images.githubusercontent.com/98209409/178126574-f8d2151d-4d6f-4442-9ef4-fa20cef8666b.png">
-
-출처 : https://bb-dochi.tistory.com/83
 </br>
 </br>
 
