@@ -95,11 +95,9 @@
 </br>
 </br>
 
-## ✅ 원격 프록시, 가상 프록시, 보호 프록시
+## ✅ 원격 프록시
 
 </br>
-
-### 원격 프록시 
 > 원격 객체(다른 JVM에 들어있는 객체)에 대한 접근을 제어 할 수 있다. </p>
 > 원격 프록시의 메소드를 호출하게 되면 네트워크를 통해 전달되어 원격 객체의 메소드가 호출되며 이러한 결과는 다시 클라이언트에게 전달됩니다.
 
@@ -111,22 +109,6 @@
 
 </br>
 </br>
-
-
-### 가상 프록시 
-> 생성하기 힘든 자원에 대해 접근을 제어 할 수 있다. </p>
-> 실제 객체의 사용 시점을 제어 할 수 있다. 클라이언트가 처음 요청 및 접근 할 때만 실체 객체가 생성되며 </p>
-> 이후는 프록시를 참조하여 실제 객체를 대신 할 수 있다. </p>
-
-</br>
-
-<img width="700" alt="가상프록시" src="https://user-images.githubusercontent.com/98209409/179261011-19c9002a-4849-41b2-acb6-9ce1a3969dec.png">
-
-</br>
-</br>
-
-### 보호 프록시 
-> 접근 권한이 필요한 자원에 대한 접근을 제어 할 수 있다.
 
 
 ## ✅ 예제 : GumballMachine 클래스를 원격 서비스로 바꾸기 
@@ -230,9 +212,105 @@ public class GumballMachine
 4. RMI 레지스트리 등록
 </br>
 
-5. 클라이언트 코드 수정 
-> GumballMachine -> GumballMachineRemote
-> 뽑기 기계의 인스턴스를 만들 때 항상 try/ catch문으로 감싸기 
+```java
+
+public class GumballMachineTestDrive(){
+
+public static void main(String[] args){
+
+...
+
+  try { // 뽑기 기계의 인스턴스를 만드는 부분을 try/catch 블록으로 감싸야 한다. 생성자가 예외를 던질 수도 있음
+    count = Integer.parseInt(args[1]);
+    
+    gumballMachine = new GumballMachine(args[0], count);
+    Naming.rebind("//" + args[0] + "/gumballmachine", gumballMachine);
+    //Naming.rebind 메소드를 호출, GumballMachine 스텁을 gumballmachine 이라는 이름으로 등록한다.
+  }catch (Exception e ){  
+    e.printStackTrace();
+  }
+ }
+}
+
+```
+</br>
+
+5. 테스트 실행 </p>
+> 1. rmiregistry 실행 </p>
+> 2. java GumballMachineTestDrive austin.mightgumball.com 100 </p>
 
 </br>
 </br>
+
+6. GumballMonitor 클라이언트 코드 고치기
+</br>
+
+```java
+
+import java.rmi.*; //RemoteException 클래스 사용하므로 RMI 패키지 임포트
+
+public class GumballMonitor{
+  GumballMachineRemote machine;
+  // 이제 GumballMachine 구상클래스 대신 원격 인터페이스 사용
+  
+  public GumballMonitor(GumballMachineRemote machine){
+    this.machine = machine;
+  
+  }
+  
+  public void report(){
+     try{
+       system.out.printlm("뽑기 기계 위치:" + machine.getLocation());
+       system.out.printlm("현재 재고 상태:" + machine.getCount() + "gumballs" );
+       system.out.printlm("뽑기 상태:" + machine.getState());
+     }catch (RemoteException e) {
+       e.printStackTrace(); //이제 메소드를 네트워크로 호출하므로 RemoteException이 던져질 때 잡아낼 수 있어야 한다.
+     }
+  }
+}
+
+```
+
+## ✅ 가상 프록시
+> 생성하기 힘든 자원에 대해 접근을 제어 할 수 있다. </p>
+> 실제 객체의 사용 시점을 제어 할 수 있다. 클라이언트가 처음 요청 및 접근 할 때만 실체 객체가 생성되며 </p>
+> 이후는 프록시를 참조하여 실제 객체를 대신 할 수 있다. </p>
+> 객체 생성이 완료 되면 그냥 RealSubject 요청을 직접 전달 </p>
+
+</br>
+
+<img width="700" alt="가상프록시" src="https://user-images.githubusercontent.com/98209409/179261011-19c9002a-4849-41b2-acb6-9ce1a3969dec.png">
+
+
+</br>
+</br>
+
+## ✅ 보호 프록시 
+> 접근 권한이 필요한 자원에 대한 접근을 제어 할 수 있다.
+> java.lang.reflect 패키지에 프록시 기능이 내장되어있다.
+> 이 패키지를 통해 즉석에서 한 개 이상의 인터페이스를 구현하고 메소드 호출을 지정한 클래스로 전달하는 프록시를 생성가능
+> 실제 프록시 클래스는 실행중에 생성되므로 이런 기술을 동적 프록시(dynamic proxy)라고 함
+
+```java
+
+//PersonBean 객체를 인자로 받고, 프록시를 리턴함
+PersonBean getOwnerProxy(PersonBean person){
+    return (PersonBean) Proxy.newProxyInstance(
+        person.getClass().getClassLoader(),
+        person.getClass().getInterfaces(),
+        new OwnerInvocationHandler(person));
+    //newProxyInstance()로 프록시를 생성
+    //프록시에서 구현해야하는 클래스로더, 인터페이스를 인자로 전달
+    //호출핸들러도 전달, 핸들러의 인자로 person을 전달
+}
+
+```
+
+</br>
+</br>
+
+## ✅ 그 외 여러 프록시
+> 방화벽 프록시, 스마트 레퍼런스 프록시, 캐싱 프록시, 동기화 프록시, 복잡도 숨김 프록시, 지연 복사 프록시
+
+
+
