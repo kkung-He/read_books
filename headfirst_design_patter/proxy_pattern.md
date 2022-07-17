@@ -122,12 +122,11 @@
 import java.rmi.*; // 빼먹지 말자!
 
 //원격 인터페이스
-public interface GumballMachineRemote extends Remote{
-    public int getCount() throws RemoteException;
+public interface GumballMachineRemote extends Remote{ //Remote : 원격 호출을 지원한다.
+    public int getCount() throws RemoteException;   // 지원해야하는 메소드 모두 RemoteException을 던질 수 있어야 한다.
     public String getLocation() throws RemoteException;
     public State getState() throws RemoteException;
-    //모든 리턴 형식은 원시 형식 또는 Serializable이어야 한다.
-    // 지원해야 하는 메소드 모두 RemoteException을 던질 수 있다.
+    //모든 리턴 형식은 원시 형식(int, double...etc) 또는 Serializable이어야 한다.
 }
 
  ```
@@ -155,10 +154,11 @@ public interface State extends Serializable{ //아무 메소드도 없는 Serial
 }
 
 
-public class NoQuarterState implements State{
+public class NoQuarterState implements State{ 
 
-    private static final long serialVersionUID = 2L;
-    //transient 키워드로 해당 필드는 직렬화 되지 않도록 함
+    private static final long serialVersionUID = 2L; 
+    //state를 구현하는 모든 클래스에서, Gumballachine 인스턴스 변수를 선언하는 부분에 transient키워드 추가 
+    //transient 키워드로 해당 필드는 직렬화 되지 않도록 함 <-  객체를 직렬화해서 전송받은 후에 이 필드를 호출하면 안좋은 일이 생길 수도 있다
     transient GumballMachine gumballMachine;
     
     //기타 메소드..
@@ -169,16 +169,19 @@ public class NoQuarterState implements State{
 </br> 
 
 3. 구상 클래스에서 인터페이스를 구현 
-> GumballMachine이 서비스 역할과 네트워트 요청을 처리 할 수 있도록 수정  </p>
+> GumballMachine 클래스를 네트워트 요청을 처리 할 수 있도록 수정  </p>
+> GumballMachine 클레스에서 GumballMachineRemote 인터페이스를 구현할 때 필요한 메소드를 모두 구현했는지 확인해야 한다. </p>
+
+</br> 
 
 ```java
 
-import java.rmi.*;    // 임포트
+import java.rmi.*;    // rmi 패키지 임포트
 import java.rmi.server.*;
 
 public class GumballMachine 
    extends UnicastRemoteObject implements GumballMachineRemote 
-   //GumballMachine 클래스를 UnicastRemoteObject의 서브 클래스로 만들어야 원격 서비스 역할을 할 수 있다.
+   //GumballMachine 클래스를 UnicastRemoteObject의 서브 클래스로 만들어야 원격 서비스 역할을 할 수 있다. + 원격 인터페이스 
 {
     private static final long serialVersionUID = 2L;
     //기타 인스턴스 변수 ..
@@ -190,6 +193,7 @@ public class GumballMachine
         //생성자 코드
     }
     
+    //아래는 바꾸지 않아도 
     public int getCount() {
       return count;
     }
@@ -237,12 +241,14 @@ public static void main(String[] args){
 
 5. 테스트 실행 </p>
 > 1. rmiregistry 실행 </p>
-> 2. java GumballMachineTestDrive austin.mightgumball.com 100 </p>
+> 2. java GumballMachineTestDrive austin.mightgumball.com 100 </p> 
+> // 뽑기 기계를 구동하고 RMi 레지스트리에 등록한다.
 
 </br>
 </br>
 
 6. GumballMonitor 클라이언트 코드 고치기
+> 이 클래스는 그대로 두고, 네트워크로 데이터를 받아오기로 했으나 약간은 고쳐야 함
 
 </br>
 
