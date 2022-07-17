@@ -112,10 +112,11 @@
 
 
 ## ✅ 예제 : GumballMachine 클래스를 원격 서비스로 바꾸기 
-
-1. GumballMachine용 원격 인터페이스 정의 </p>
 > GumballMachine 클래스를 클라이언트로부터 전달된 원격 요청을 처리하도록 바꾸기 </p>
 > 즉, 서비스를 구현한 클래스로 만들어야 한다.
+
+
+1. GumballMachine용 원격 인터페이스 정의 </p>
 
 </br>
 
