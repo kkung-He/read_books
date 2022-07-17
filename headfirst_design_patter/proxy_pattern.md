@@ -185,6 +185,7 @@ import java.rmi.server.*;
 public class GumballMachine 
    extends UnicastRemoteObject implements GumballMachineRemote 
    //GumballMachine 클래스를 UnicastRemoteObject의 서브 클래스로 만들어야 원격 서비스 역할을 할 수 있다. + 원격 인터페이스 
+   // UnicastRemoteObject : 원격 객체 기능 추가 (원격 서비스 객체 역할을 하기 위함) - 슈퍼클래스에서 제공하는 기능
 {
     private static final long serialVersionUID = 2L;
     //기타 인스턴스 변수 ..
