@@ -191,7 +191,7 @@ public class GumballMachine
     //기타 인스턴스 변수 ..
    
     public GumballMachine(String location, int numberGumballs) throws RemoteException{
-        //슈퍼클래스에서 RemoteException 를 던질 수 있기 때문에
+        //슈퍼클래스 UnicastRemoteObject에는 생성자가 RemoteException을 던질 수 있기 때문에
         //해당 생성자에서도 던질 수 있어야 한다.
         
         //생성자 코드
