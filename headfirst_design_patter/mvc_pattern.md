@@ -109,63 +109,161 @@
 
 ## ✅ 예제
 </br>
+예제 출처 : https://www.crocus.co.kr/1539
+</br>
 
-### Controller 
+### MVC main class
+: model, view, controller를 모두 생성한다. updateView를 통해 옵저버 패턴을 보이고있다.
+</br>
 
 ```java
-public class Controller{
-    public static void main(String[] args) {
-        Model model = new Model();
-        View view = new View();
 
-        int num1 = view.numInput();
-        int num2 = view.numInput();
+package MVCPattern;
 
-        var addNum = model.add(num1, num2);
+public class MVCMain {
 
-        view.showValue(addNum);
-    }
+  public static void main(String[] args) {
+    CharacterModel model = new CharacterModel("Crocus", 20, 3);		
+    CharacterView view = new CharacterView();		
+    CharacterController controller = new CharacterController(model, view);
+    controller.updateView();
+
+    controller.setCharacterLevel(controller.getCharacterLevel() + 1);
+    controller.updateView();
+    
+    controller.setCharacterLife(controller.getCharacterLife() + 10);
+    controller.updateView();
+  }
+
 }
 ```
 </br>
 
-### Model 
+### CharacterModel 클래스 
+: Model은 모든 상태를 가지고 관리해야 한다.
 
 ```java
-class Model {
-    int add(int a, int b) {
-        return a + b;
-    }
+
+package MVCPattern;
+
+public class CharacterModel {
+  private String name;
+  private int level;
+  private int life;
+  
+  public CharacterModel(String name, int level, int life) {
+    this.name = name;
+    this.level = level;
+    this.life = life;
+  }
+  
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  public int getLevel() {
+    return level;
+  }
+  public void setLevel(int level) {
+    this.level = level;
+  }
+  
+  public int getLife() {
+    return life;
+  }
+  public void setLife(int life) {
+    this.life = life;
+  }
 }
 ```
 
 </br>
 
-### View
+### CharacterView 클래스 
+: UI 관련된 기능을 가지고 있다.
 
 ```java
-import java.util.Scanner;
 
-class View {
-    private Scanner in = null;
+package MVCPattern;
 
-    View(){
-        in = new Scanner(System.in);
-    }
-
-    int numInput(){
-        System.out.println("Input Number.. : ");
-        return in.nextInt();
-    }
-
-    void showValue(int value){
-        System.out.println("---------------------------------");
-        System.out.println("Add value is " + value);
-        System.out.println("---------------------------------");
-    }
+public class CharacterView {
+  // State query
+  public void printView(CharacterModel model) {
+    System.out.println("Name :: " + model.getName());
+    System.out.println("Level :: " + model.getLevel());
+    System.out.println("Life :: " + model.getLife());
+  }
 }
 
 ```
+</br>
+### CharacterController 클래스 
+: 위의 MVC Structure에서 나타난 기능들을 포함하고 있다.
+
+```java
+package MVCPattern;
+
+public class CharacterController {
+  private CharacterModel model;
+  private CharacterView view;
+  
+  public CharacterController(CharacterModel model, CharacterView view) {
+    this.model = model;
+    this.view = view;
+  }
+
+  // State change
+  public void setCharacterName(String name) {
+    model.setName(name);
+  }	
+  public String getCharacterName() {
+    return model.getName();
+  }
+  
+  // State change
+  public void setCharacterLevel(int level) {
+    model.setLevel(level);
+  }
+  public int getCharacterLevel() {
+    return model.getLevel();
+  }
+
+  // State change
+  public void setCharacterLife(int life) {
+    model.setLife(life);
+  }
+  public int getCharacterLife() {
+    return model.getLife();
+  }
+  
+  // View selection(Rendering)
+  public void updateView() {
+    view.printView(model);
+  }
+}
+
+```
+
+</br>
+</br>
+
+## ✅ MVC 의 장점
+- 기능별로 코드를 분리하여 하나의 파일에 코드가 모이는 것을 방지하여 가독성과 코드의 재사용이 증가한다. </p>
+- 각 구성요소들을 독립시켜 협업 할 때 맡은 부분 개발에만 집중 할 수 있어 개발 효율성을 높여준다 - 분업 가능 </p>
+- 유지 보수성과 확장성이 보장된다.
+
+</br>
+</br>
+
+## ✅ MVC 의 한게
+- Model과 View는 서로의 정보를 갖고 있지 않는 독립적인 상태라고 하지만 Model과 View사이에는 Controller를 통해 소통을 이루기에 의존성이 완전 분리될 수 없다.</p>
+- 복잡 대규모 프로그램으 ㅣ경우 다수의 View와 Model이 Controller 통해 연결되므로 컨트롤러가 불필요하게 커지는 현상 발생하기도 한다.</p>
+- 이러한 현상을 Massive - View - Controller 현상이라고도 함. 이를 보안하기위해 MVVM, MVP 등의 다양한 패턴이 생겨났다.
+
+참조 : https://velog.io/@seongwon97/MVC-%ED%8C%A8%ED%84%B4%EC%9D%B4%EB%9E%80
 
 </br>
 </br>
