@@ -1,4 +1,4 @@
-# mvc 패턴 이해하기 :star2:
+# 복합패턴 : mvc 패턴 이해하기 :star2:
 
 </br>
 </br>
@@ -78,7 +78,7 @@
 
 ### :bookmark: 모델 - 옵저버 패턴 
 : 모델은 옵저버 패턴을 써서 상태가 변경되었을 때 그 모델과 연관된 객체들에게 연락한다. 옵저버 패턴을 사용하면 모델을 뷰와 컨트롤러로부터 완전히 독립 시킬 수 있다. </p>
-한 모델에서 서로 다른 뷰를 사용할 수도 있고, 심지어 여러개의 뷰를 동시에 사용하는 것도 가능하다. </p>›
+한 모델에서 서로 다른 뷰를 사용할 수도 있고, 심지어 여러개의 뷰를 동시에 사용하는 것도 가능하다. </p>
 
 <img width="704" alt="모델의 옵저버 패턴" src="https://user-images.githubusercontent.com/98209409/180632041-1a359a8e-4fe8-451f-9c49-9ab62454e3f6.png">
 
@@ -103,3 +103,69 @@
 <img width="600" alt="뷰와 컨트롤러 전략패턴" src="https://user-images.githubusercontent.com/98209409/180632012-c20020ad-2ebb-4dbc-b613-1916cf10781c.png">
 
 출처 : https://thefif19wlsvy.tistory.com/49
+
+</br>
+</br>
+
+## ✅ 예제
+</br>
+
+### Controller 
+
+```java
+public class Controller{
+    public static void main(String[] args) {
+        Model model = new Model();
+        View view = new View();
+
+        int num1 = view.numInput();
+        int num2 = view.numInput();
+
+        var addNum = model.add(num1, num2);
+
+        view.showValue(addNum);
+    }
+}
+```
+</br>
+
+### Model 
+
+```java
+class Model {
+    int add(int a, int b) {
+        return a + b;
+    }
+}
+```
+
+</br>
+
+### View
+
+```java
+import java.util.Scanner;
+
+class View {
+    private Scanner in = null;
+
+    View(){
+        in = new Scanner(System.in);
+    }
+
+    int numInput(){
+        System.out.println("Input Number.. : ");
+        return in.nextInt();
+    }
+
+    void showValue(int value){
+        System.out.println("---------------------------------");
+        System.out.println("Add value is " + value);
+        System.out.println("---------------------------------");
+    }
+}
+
+```
+
+</br>
+</br>
